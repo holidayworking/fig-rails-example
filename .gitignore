@@ -1,0 +1,7 @@
+/.bundle
+/coverage
+/log/*.log
+/spec/reports
+/tmp
+/vendor/bin
+/vendor/bundle

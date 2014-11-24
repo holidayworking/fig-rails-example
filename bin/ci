@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export FIG_PROJECT_NAME=fig-rails-example
+
+# Docker で bundle の実行を高速化するためにファイル更新日時を一定にする
+# refs : http://ssig33.com/text/Jenkins%20%E3%81%A7%20docker%20build%20%E3%81%99%E3%82%8B%E8%A9%B1
+touch -t 201412121212.12 Gemfile
+touch -t 201412121212.12 Gemfile.lock
+
+fig build
+fig up -d
+sleep 30
+fig run app /bin/sh -ex ./bin/ci_spec || RESULT=$?
+fig stop
+fig rm --force
+
+exit $RESULT
