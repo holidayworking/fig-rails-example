@@ -1,0 +1,9 @@
+machine:
+  ruby:
+    version: 2.1.5
+test:
+  override:
+    - bundle exec rake rspec:
+        environment:
+          RAILS_ENV: test
+          GENERATE_REPORTS: true
